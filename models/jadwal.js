@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Jadwal = sequelize.define('Jadwal', {
-    tanggal_berangkat: DataTypes.DATE,
+    tanggal_berangkat: DataTypes.STRING,
     origin: DataTypes.STRING,
     destination: DataTypes.STRING,
     jam_berangkat: DataTypes.STRING,

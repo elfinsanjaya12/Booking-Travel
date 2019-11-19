@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "db_reset": "node_modules/.bin/sequelize-cli db:drop && node_modules/.bin/sequelize-cli db:create && node_modules/.bin/sequelize-cli db:migrate && node_modules/.bin/sequelize-cli db:seed:all",
+    "db_start": "node_modules/.bin/sequelize-cli db:create && node_modules/.bin/sequelize-cli db:migrate && node_modules/.bin/sequelize-cli db:seed:all"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
