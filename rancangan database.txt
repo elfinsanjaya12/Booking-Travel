@@ -1,0 +1,49 @@
+tabel customer
+- _id
+- username
+- password 
+- role ("driver, passenger")
+- nama
+- no telp
+
+table users
+- _id
+- username
+- password
+- status
+
+table mobil
+- _id
+- no_plat
+- tipe_mobil
+- warna_mobil
+
+tabel jadwal
+- _id
+- tanggal_berangkat
+- dari_mana
+- mau_kemana
+- jam_berangkat
+- id_mobil
+- jumlah_kursi
+- kursi_kosong
+- kursi_terisi
+- harga_perkursi
+- status
+
+table pesanan
+- _id 
+- id_jadwal
+- id_customer
+- titik_jemput
+- jumlah_kursi
+- total_bayar
+- no_telp
+- detail_tujuan
+- metode_bayar (cas, tunai)
+
+table pembayaran
+- _id
+- id_pesanan
+- no_rekening
+- upload_bukti_bayar
