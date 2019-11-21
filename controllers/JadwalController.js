@@ -23,7 +23,7 @@ exports.getJadwal = (req, res) => {
       { model: Car }
     ],
   }).then((jadwal) => {
-    res.status(200).json({ data: jadwal, message: "Success" });
+    res.status(200).json({ data: jadwal, message: "Success Read Jadwal" });
   }).catch((err) => {
     res.status(500).json({ message: "Internal server error" });
   });
