@@ -13,12 +13,12 @@ exports.getJadwal = (req, res) => {
   } = req.body
 
   Jadwal.findAll({
-    where: {
-      tanggal_berangkat: { [Op.eq]: tanggal_berangkat },
-      origin: { [Op.eq]: origin },
-      destination: { [Op.eq]: destination },
-      jam_berangkat: { [Op.eq]: jam_berangkat }
-    },
+    // where: {
+    //   tanggal_berangkat: { [Op.eq]: tanggal_berangkat },
+    //   origin: { [Op.eq]: origin },
+    //   destination: { [Op.eq]: destination },
+    //   jam_berangkat: { [Op.eq]: jam_berangkat }
+    // },
     include: [
       { model: Car }
     ],
