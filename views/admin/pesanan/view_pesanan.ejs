@@ -26,7 +26,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Jadwal</th>
                                     <th>Customer</th>
                                     <th>Titik jemput</th>
                                     <th>Jumlah kursi</th>
@@ -38,7 +37,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+
+
+                                <% for (let i = 0; i < pesanan.length; i++ ) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= pesanan[i].Customer.nama %></td>
+                                    <td><%= pesanan[i].titik_jemput %></td>
+                                    <td><%= pesanan[i].jumlah_kursi %></td>
+                                    <td><%= pesanan[i].total_bayar %></td>
+                                    <td><%= pesanan[i].no_telp %></td>
+                                    <td><%= pesanan[i].detail_tujuan %></td>
+                                    <td><%= pesanan[i].metode_pembayaran %></td>
+                                    <td>
+                                        <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            Edit
+                                        </a>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="update_status(`<%= pesanan[i].id %>`)"
+                                            data-id="<%= pesanan[i].id %>">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                                <% } %>
+
 
                             </tbody>
                         </table>

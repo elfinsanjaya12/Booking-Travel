@@ -35,6 +35,26 @@
                             </thead>
                             <tbody>
 
+                                <% for (let i = 0; i < bank.length; i++ ) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= bank[i].no_rekening %></td>
+                                    <td><%= bank[i].nama_bank %></td>
+                                    <td><%= bank[i].nama_pemilik %></td>
+                                    <td>
+                                        <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            Edit
+                                        </a>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="update_status(`<%= bank[i].id %>`)" data-id="<%= bank[i].id %>">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                                <% } %>
+
                             </tbody>
                         </table>
                     </div>

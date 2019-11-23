@@ -41,6 +41,32 @@
               </thead>
               <tbody>
 
+                <% for (let i = 0; i < jadwal.length; i++ ) { %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= jadwal[i].tanggal_berangkat %></td>
+                  <td><%= jadwal[i].origin %></td>
+                  <td><%= jadwal[i].destination %></td>
+                  <td><%= jadwal[i].jam_berangkat %></td>
+                  <td><%= jadwal[i].Car.jenis_mobil %></td>
+                  <td><%= jadwal[i].jumlah_kursi %></td>
+                  <td><%= jadwal[i].kursi_kosong %></td>
+                  <td><%= jadwal[i].kursi_terisi %></td>
+                  <td><%= jadwal[i].harga_kursi %></td>
+                  <td>
+                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                      Edit
+                    </a>
+                    <button class="btn btn-danger btn-sm" onclick="update_status(`<%= jadwal[i].id %>`)"
+                      data-id="<%= jadwal[i].id %>">
+                      <span class="glyphicon glyphicon-trash"></span>
+                      Hapus
+                    </button>
+                  </td>
+                </tr>
+                <% } %>
+
               </tbody>
             </table>
           </div>

@@ -28,7 +28,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>Status</th>
                                     <th>Nama</th>
                                     <th>No telepon</th>
@@ -36,7 +35,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <% for (let i = 0; i < user.length; i++ ) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= user[i].username %></td>
+                                    <td><%= user[i].role %></td>
+                                    <td><%= user[i].nama %></td>
+                                    <td><%= user[i].no_telp %></td>
+                                    <td>
+                                        <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            Edit
+                                        </a>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="update_status(`<%= user[i].id %>`)" data-id="<%= user[i].id %>">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                                <% } %>
                             </tbody>
                         </table>
                     </div>
