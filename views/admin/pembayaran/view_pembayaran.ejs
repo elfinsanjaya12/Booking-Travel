@@ -1,3 +1,4 @@
+
 <%- include ../../partials/admin_layout/header.ejs %>
 <%- include ../../partials/admin_layout/sidebar.ejs %>
 <!-- Content Wrapper. Contains page content -->
@@ -11,7 +12,7 @@
         <div class="box">
           <!-- /.box-header -->
           <div class="box-header">
-            <h3 class="box-title">Data Mobil</h3>
+            <h3 class="box-title">DataPembayaran</h3>
           </div>
 
           <div class="box-body">
@@ -26,32 +27,16 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Plat</th>
-                  <th>Jenis Mobil</th>
-                  <th>Surat kendaraan</th>
+                  <th>Nama Customer</th>
+                  <th>Lokasi awal</th>
+                  <th>Lokasi tujuan</th>
+                  <th>Total bayar</th>
+                  <th>Bukti pembayaran</th>
+                  <th>Status (sudah  bayar/belum bayar)</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
-                <% for (let i = 0; i < mobil.length; i++ ) { %>
-                <tr>
-                  <td><%= i + 1 %></td>
-                  <td><%= mobil[i].no_plat %></td>
-                  <td><%= mobil[i].jenis_mobil %></td>
-                  <td></td>
-                  <td>
-                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                      Edit
-                    </a>
-                    <button class="btn btn-info btn-sm" onclick="update_status(`<%= mobil[i].id %>`)"
-                      data-id="<%= mobil[i].id %>">
-                      <span class="glyphicon glyphicon-star"></span>
-                      Active
-                    </button>
-                  </td>
-                </tr>
-                <% } %>
 
               </tbody>
             </table>

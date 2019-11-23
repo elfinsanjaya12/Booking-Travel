@@ -19,12 +19,44 @@ exports.getJadwal = async (req, res) => {
   })
 };
 
+// disini cara ambil view yat ???
+exports.getCustomer = async (req, res) => {
+  res.render('admin/customer/view_customer', {
+    title: "Customer",
+  })
+};
+
+// disini cara ambil view yat ???
+exports.getPesanan = async (req, res) => {
+  res.render('admin/pesanan/view_pesanan', {
+    title: "Pesanan",
+  })
+};
+
+// disini cara ambil view yat ???
+exports.getPembayaran = async (req, res) => {
+  res.render('admin/pembayaran/view_pembayaran', {
+    title: "Pembayaran",
+  })
+};
+
+// disini cara ambil view yat ???
+exports.getBank = async (req, res) => {
+  res.render('admin/bank/view_bank', {
+    title: "Bank",
+  })
+};
+
 
 
 exports.actionCreate = (req, res) => {
-  const { no_plat, jenis_mobil } = req.body
+  const {
+    no_plat,
+    jenis_mobil
+  } = req.body
   Mobil.create({
-    no_plat, jenis_mobil
+    no_plat,
+    jenis_mobil
   }).then((result) => {
     console.log(result)
   }).catch((err) => {

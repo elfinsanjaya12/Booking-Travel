@@ -1,9 +1,10 @@
 const {
   Pesanan,
-  Jadwal,
-  Customer
+  Jadwal
 } = require("../models");
 const Op = require("sequelize").Op;
+
+
 
 exports.getPesanan = (req, res) => {
   const { CustomerId } = req.params
