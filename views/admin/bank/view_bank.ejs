@@ -42,10 +42,16 @@
                                     <td><%= bank[i].nama_bank %></td>
                                     <td><%= bank[i].nama_pemilik %></td>
                                     <td>
-                                        <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                                        <!-- <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                             Edit
-                                        </a>
+                                        </a> -->
+
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            Edit
+                                        </button>
+
                                         <button class="btn btn-danger btn-sm"
                                             onclick="update_status(`<%= bank[i].id %>`)" data-id="<%= bank[i].id %>">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -73,7 +79,8 @@
 <%- include add_modal.ejs %>
 
 
-<!-- include  edit modal -->
+<!-- include  add modal -->
+<%- include edit_modal.ejs %>
 
 
 <%- include ../../partials/admin_layout/footer.ejs %>
