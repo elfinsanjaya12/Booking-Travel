@@ -2,6 +2,7 @@ const {
     Car
 } = require("../models")
 
+/* get all car */
 exports.getCar = async (req, res) => {
     try {
         const car = await Car.findAll();
@@ -15,6 +16,8 @@ exports.getCar = async (req, res) => {
 }
 
 
+
+/* create all car */
 exports.actionCreateCar = (req, res) => {
     const {
         no_plat,

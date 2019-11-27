@@ -40,30 +40,50 @@ exports.signin = (req, res) => {
   })
 }
 
+/* get cutomer */
+exports.getCustomer = async (req, res) => {
+  try {
+    const customer = await Customer.findAll();
+    res.status(200).json({
+      message: "Succes read Customer",
+      customer
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/* create controller */
+
 exports.createCustomer = (req, res) => {
+  /* exports mengabil data dari router */
   const {
+    /* mendeklarasikan variabel yang ada di database */
     username,
     password,
     role,
     nama,
     no_telp
-  } = req.body
-  const hashPassword = bcrypt.hashSync(password, 10);
+  } = req.body /* request data dari body pada postman */
+  const hashPassword = bcrypt.hashSync(password, 10); /* encrypt password */
   console.log(hashPassword)
   Customer.create({
+    /* menambahk data ke table */
     username,
     password: hashPassword,
-    role,
+    role: "penumpang",
     nama,
     no_telp
   }).then((customer) => {
     res.status(200).json({
+      /* jika sukses maka kirim pesan 200 artinya ok */
       message: "Succes Cerate Customer",
       customer,
     });
   }).catch((err) => {
     console.log(err)
     res.status(500).json({
+      /* jika salah atau eror maka 500 yaitu internal server eror */
       message: "Internal server error"
     });
   });

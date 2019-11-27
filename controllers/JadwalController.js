@@ -4,6 +4,7 @@ const {
 } = require("../models")
 const Op = require("sequelize").Op
 
+/* get all jadwal */
 exports.getJadwal = (req, res) => {
   Jadwal.findAll({
     include: [
@@ -17,6 +18,7 @@ exports.getJadwal = (req, res) => {
 };
 
 
+/* get tanggal jadwal */
 exports.getTanggalJadwal = (req, res) => {
   const { tanggal_berangkat } = req.params
   Jadwal.findAll({
@@ -31,6 +33,7 @@ exports.getTanggalJadwal = (req, res) => {
   });
 };
 
+/* create jadwal */
 exports.createJadwal = (req, res) => {
   const{
     tanggal_berangkat,

@@ -10,6 +10,8 @@ router.get("/", getPesanan);
 
 /* get all pesanan by customer id */
 router.get("/:CustomerId", getPesanan);
+
+/* create pesanan */
 router.post("/", actionAddPesanan);
 
 
