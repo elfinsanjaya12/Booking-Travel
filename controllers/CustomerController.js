@@ -25,6 +25,7 @@ exports.signin = (req, res) => {
         // }, 'secret');
         res.status(200).json({
           message: 'Success Signin',
+          user
           // data: { token, role: user.role }
         })
       } else {
