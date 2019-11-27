@@ -7,7 +7,7 @@ var {
   getPesanan,
   getPembayaran,
   getBank
-} = require("../controllers/MobilController");
+} = require("../controllers/AdminController");
 
 /* get all address */
 router.get("/admin/mobil", getMobil);

@@ -30,3 +30,46 @@ exports.getTanggalJadwal = (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   });
 };
+
+exports.createJadwal = (req, res) => {
+  const{
+    tanggal_berangkat,
+            origin,
+            destination,
+            jam_berangkat,
+            MobilId,
+            jumlah_kursi,
+            kursi_kosong,
+            kursi_terisi,
+            harga_perkursi
+  } =req.body
+
+  Jadwal.create({
+    tanggal_berangkat,
+            origin,
+            destination,
+            jam_berangkat,
+            MobilId,
+            jumlah_kursi,
+            kursi_kosong,
+            kursi_terisi,
+            harga_perkursi,
+            status:"Active"
+  }).then((jadwal)=>{
+    res.status(201).json({
+      message: "Succes Create jadwal baru",
+      jadwal,
+    });
+  }).catch((err)=> {
+    res.status(500).json({
+      message: "Internal server error"
+    });
+  });
+
+}
+
+
+
+
+
+
