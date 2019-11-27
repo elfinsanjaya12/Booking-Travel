@@ -15,6 +15,53 @@ exports.getMobil = async (req, res) => {
   })
 };
 
+exports.actionCreateMobil = (req, res) => {
+  const { no_plat, jenis_mobil } = req.body
+  Car.create({
+    no_plat, jenis_mobil
+  }).then(() => {
+    res.redirect("/admin/mobil")
+  }).catch((err) => {
+    res.redirect("/admin/mobil")
+  });
+}
+
+
+exports.actionDeteleMobile = (req, res) => {
+  let { id } = req.params;
+  Car.findOne({
+    where: { id: { [Op.eq]: id } }
+  }).then(async (car) => {
+    car.destroy().then(() => {
+      res.redirect('/admin/mobil');
+    })
+  }).catch((err) => {
+    res.redirect('/admin/mobil');
+  });
+}
+
+exports.actionUpdateMobil = async (req, res) => {
+  const { id, no_plat, jenis_mobil } = req.body
+  try {
+    const updateCar = await Car.findOne({
+      where: { id: { [Op.eq]: id } }
+    })
+    if (updateCar) {
+      updateCar.no_plat = no_plat
+      updateCar.jenis_mobil = jenis_mobil
+      await updateCar.save()
+    }
+    res.redirect('/admin/mobil')
+  } catch (error) {
+    res.redirect('/admin/mobil')
+  }
+}
+
+
+
+
+
+
 
 // disini cara ambil view yat ???
 exports.getJadwal = async (req, res) => {

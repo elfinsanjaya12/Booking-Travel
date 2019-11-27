@@ -28,7 +28,7 @@
                   <th>No</th>
                   <th>Plat</th>
                   <th>Jenis Mobil</th>
-                  <th>Surat kendaraan</th>
+                  <!-- <th>Surat kendaraan</th> -->
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -38,16 +38,18 @@
                   <td><%= i + 1 %></td>
                   <td><%= mobil[i].no_plat %></td>
                   <td><%= mobil[i].jenis_mobil %></td>
-                  <td></td>
+                  <!-- <td></td> -->
                   <td>
-                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit"
+                      data-no="<%= mobil[i].no_plat %>" data-id="<%= mobil[i].id %>"
+                      data-jenis="<%= mobil[i].jenis_mobil %>">
                       <span class="glyphicon glyphicon-pencil"></span>
                       Edit
                     </a>
-                    <button class="btn btn-info btn-sm" onclick="update_status(`<%= mobil[i].id %>`)"
+                    <button class="btn btn-danger btn-sm" onclick="delete_mobil(`<%= mobil[i].id %>`)"
                       data-id="<%= mobil[i].id %>">
-                      <span class="glyphicon glyphicon-star"></span>
-                      Active
+                      <span class="glyphicon glyphicon-remove"></span>
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -87,43 +89,23 @@
       window.location.replace(window.location.protocol + "//" + window.location.host + '/admin/kelas')
     }
 
-    // function simpan
-    $('#simpan_kelas').on('submit', function (event) {
-      event.preventDefault();
-      $.ajax({
-        url: "/admin/kelas/create",
-        method: "POST",
-        data: $(this).serialize(),
-        success: function () {
-          swal({
-            title: "Success",
-            text: "Success Tambah Data Kelas",
-            icon: "success",
-            button: "Oke",
-          }).then(sukses => {
-            halamankelas();
-          });
-        },
-      })
-    })
 
     //showing data to e edit modal 
     $('#kelas').on('click', '.edit', function () {
       const id = $(this).data('id');
-      const nama = $(this).data('nama');
-      const tingkat = $(this).data('tingkat');
+      const no_plat = $(this).data('no');
+      const jenis_mobil = $(this).data('jenis');
 
 
       $('#edit-modal').modal('show');
       $('.id').val(id);
-      $('.nama').val(nama);
-      $('.tingkat').val(tingkat);
+      $('.no_plat').val(no_plat);
+      $('.jenis_mobil').val(jenis_mobil);
     });
   })
 
-  // Delete guru 
-  function delete_kelas(id) {
-    let idKelas = id;
+  // Delete mobil 
+  function delete_mobil(id) {
     swal({
       title: "Yakin Ingin Menghapus Data Kelas ini?",
       text: "Data yang dihapus, tidak bisa kembali lagi.",
@@ -134,11 +116,11 @@
       if (willDelete) {
         swal({
           title: "Success",
-          text: "Success Delete Data Kelas",
+          text: "Success Delete Data Mobil",
           icon: "success",
           button: "Oke",
         }).then(suksesDelete => {
-          window.location.assign(`/admin/kelas/delete/${idKelas}`);
+          window.location.assign(`/admin/mobil/${id}`);
         });
       }
     });

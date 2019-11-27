@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 var {
   getMobil,
+  actionCreateMobil,
+  actionDeteleMobile,
+  actionUpdateMobil,
   getJadwal,
   getCustomer,
   getPesanan,
@@ -9,8 +12,11 @@ var {
   getBank
 } = require("../controllers/AdminController");
 
-/* get all address */
+/* get all car */
 router.get("/admin/mobil", getMobil);
+router.post("/admin/mobil", actionCreateMobil);
+router.get("/admin/mobil/:id", actionDeteleMobile);
+router.post("/admin/mobil/update", actionUpdateMobil);
 
 router.get("/admin/jadwal", getJadwal);
 
