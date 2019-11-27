@@ -1,9 +1,14 @@
-const { Customer } = require("../models");
+const {
+  Customer
+} = require("../models");
 
 const bcrypt = require('bcryptjs');
 
 exports.signin = (req, res) => {
-  const { username, password } = req.body
+  const {
+    username,
+    password
+  } = req.body
   Customer.findOne({
     where: {
       username: username
@@ -33,4 +38,34 @@ exports.signin = (req, res) => {
       })
     }
   })
+}
+
+exports.createCustomer = (req, res) => {
+  const {
+    username,
+    password,
+    role,
+    nama,
+    no_telp
+  } = req.body
+  const hashPassword = bcrypt.hashSync(password, 10);
+  console.log(hashPassword)
+  Customer.create({
+    username,
+    password: hashPassword,
+    role,
+    nama,
+    no_telp
+  }).then((customer) => {
+    res.status(200).json({
+      message: "Succes Cerate Customer",
+      customer,
+    });
+  }).catch((err) => {
+    console.log(err)
+    res.status(500).json({
+      message: "Internal server error"
+    });
+  });
+
 }
