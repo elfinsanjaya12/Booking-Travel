@@ -11,6 +11,7 @@ let jadwalRouter = require('./routes/jadwal');
 let pesananRouter = require('./routes/pesanan');
 let mobilRouter = require('./routes/admin');
 let carRouter = require('./routes/car')
+let customerRouter = require('./routes/customer');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/v1/jadwal', jadwalRouter);
 app.use('/v1/pesanan', pesananRouter);
 app.use('/v1/car', carRouter);
+app.use('/v1/customer', customerRouter);
 app.use('/', mobilRouter);
 
 
