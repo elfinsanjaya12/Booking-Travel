@@ -61,7 +61,6 @@ exports.createCustomer = (req, res) => {
     /* mendeklarasikan variabel yang ada di database */
     username,
     password,
-    role,
     nama,
     no_telp
   } = req.body /* request data dari body pada postman */
