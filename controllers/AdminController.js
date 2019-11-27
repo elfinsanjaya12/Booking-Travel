@@ -57,12 +57,6 @@ exports.actionUpdateMobil = async (req, res) => {
   }
 }
 
-
-
-
-
-
-
 // disini cara ambil view yat ???
 exports.getJadwal = async (req, res) => {
   const jadwal = await Jadwal.findAll({
@@ -70,16 +64,50 @@ exports.getJadwal = async (req, res) => {
       { model: Car }
     ],
   })
+
+  const car = await Car.findAll()
   res.render('admin/jadwal/view_jadwal', {
     title: "Jadwal",
-    jadwal
+    jadwal,
+    car
   })
 };
+
+exports.actionCreateJadwal = async (req, res) => {
+  const {
+    tanggal_berangkat,
+    origin,
+    destination,
+    jam_berangkat,
+    MobilId,
+    jumlah_kursi,
+    harga_perkursi
+  } = req.body
+
+  Jadwal.create({
+    tanggal_berangkat,
+    origin,
+    destination,
+    jam_berangkat,
+    MobilId,
+    jumlah_kursi,
+    kursi_kosong: 0,
+    kursi_terisi: 0,
+    harga_perkursi,
+    status: "Active"
+  }).then(() => {
+    res.redirect('/admin/jadwal')
+  }).catch((err) => {
+    res.redirect('/admin/jadwal')
+  });
+}
+
+
 
 // disini cara ambil view yat ???
 exports.getCustomer = async (req, res) => {
   const user = await Customer.findAll()
-  console.log(user)
+
   res.render('admin/customer/view_customer', {
     title: "Customer",
     user

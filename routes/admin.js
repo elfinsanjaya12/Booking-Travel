@@ -6,6 +6,7 @@ var {
   actionDeteleMobile,
   actionUpdateMobil,
   getJadwal,
+  actionCreateJadwal,
   getCustomer,
   getPesanan,
   getPembayaran,
@@ -19,6 +20,7 @@ router.get("/admin/mobil/:id", actionDeteleMobile);
 router.post("/admin/mobil/update", actionUpdateMobil);
 
 router.get("/admin/jadwal", getJadwal);
+router.post("/admin/jadwal", actionCreateJadwal);
 
 router.get("/admin/customer", getCustomer);
 
