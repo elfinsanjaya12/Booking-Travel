@@ -38,3 +38,49 @@ exports.actionCreateCar = (req, res) => {
         });
     });
 }
+
+exports.actionUpdateCar = (req, res) => {
+    const { id } = req.params
+    const { no_plat, jenis_mobil } = req.body
+    Car.findOne({
+        where: { id: id }
+    }).then((car) => {
+        car.update({
+            no_plat, jenis_mobil
+        }).then((updateCar) => {
+            res.status(200).json({
+                message: 'Success Update Mobil',
+                data: updateCar
+            })
+        }).catch((err) => {
+            res.status(500).json({
+                message: 'Something Went Wrong',
+            })
+        });
+    })
+}
+
+
+exports.actionDeteleCar = (req, res) => {
+    const { id } = req.params
+    Car.findOne({
+        where: {
+            id: id
+        }
+    }).then((car) => {
+        car.destroy().then(() => {
+            res.status(200).json({
+                message: 'Success Delete Car',
+                data: car
+            })
+        }).catch((err) => {
+            res.status(500).json({
+                message: 'Something Went Wrong',
+            })
+        })
+    }).catch((err) => {
+        res.status(500).json({
+            message: 'Something Went Wrong',
+        })
+    })
+}
