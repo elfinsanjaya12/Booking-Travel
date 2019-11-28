@@ -3,6 +3,7 @@ const {
 } = require("../models");
 
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 exports.signin = (req, res) => {
   const {
@@ -17,16 +18,15 @@ exports.signin = (req, res) => {
     if (user) {
       const checkPassword = bcrypt.compareSync(password, user.password); // true
       if (checkPassword) {
-        // const token = jwt.sign({
-        //   user: {
-        //     id: user.id,
-        //     username: user.username
-        //   }
-        // }, 'secret');
+        const token = jwt.sign({
+          user: {
+            id: user.id,
+            username: user.username
+          }
+        }, 'secret');
         res.status(200).json({
           message: 'Success Signin',
-          user
-          // data: { token, role: user.role }
+          data: { token, user }
         })
       } else {
         res.status(403).json({

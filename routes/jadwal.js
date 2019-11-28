@@ -3,14 +3,26 @@ var router = express.Router();
 var {
   getJadwal,
   getTanggalJadwal,
-  createJadwal
+  createJadwal,
+  actionUpdateJadwal,
+  actionDeteleJadwal
 } = require("../controllers/JadwalController");
 
-/* get all address */
-router.get("/", getJadwal);
-router.get("/:tanggal_berangkat", getTanggalJadwal);
+const { auth } = require('../middlewares/auth')
 
-/* create jadwal */
-router.post("/", createJadwal);
+router.get("/", auth, getJadwal);
+/* get all jadwal by tanggal */
+router.get("/:tanggal_berangkat", auth, getTanggalJadwal);
+
+/* create jadwal  */
+router.post("/", auth, createJadwal);
+
+// update jadwal
+router.put("/edit/:id", auth, actionUpdateJadwal);
+
+// delete jadwal
+router.delete("/delete/:id", auth, actionDeteleJadwal);
+
+
 
 module.exports = router;
