@@ -60,8 +60,8 @@ exports.createJadwal = (req, res) => {
     status: "Active"
   }).then((jadwal) => {
     res.status(201).json({
-      message: "Succes Create jadwal baru",
-      jadwal,
+      message: "Succes Create jadwal",
+      data: jadwal,
     });
   }).catch((err) => {
     res.status(500).json({

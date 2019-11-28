@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Jadwal.associate = function (models) {
     // associations can be defined here
+    // ini konsep orm jadi
     Jadwal.belongsTo(sequelize.models.Car, {
       foreignKey: "MobilId"
     });
