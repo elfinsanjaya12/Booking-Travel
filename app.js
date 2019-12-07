@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
+const session = require('express-session');
+// const flash = require("connect-flash");
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let jadwalRouter = require('./routes/jadwal');
@@ -23,6 +26,9 @@ app.set('view engine', 'ejs');
 app.use("/adminlte",
   express.static(path.join(__dirname, "/node_modules/admin-lte/"))
 )
+
+app.use(session({ secret: 'keyboard cat', cookie: {} }));
+// app.use(flash());
 
 app.use(cors());
 app.use(logger('dev'));

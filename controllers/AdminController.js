@@ -114,6 +114,8 @@ exports.getCustomer = async (req, res) => {
   })
 };
 
+
+
 // disini cara ambil view yat ???
 exports.getPesanan = async (req, res) => {
   const pesanan = await Pesanan.findAll({
