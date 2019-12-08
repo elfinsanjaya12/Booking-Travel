@@ -54,11 +54,16 @@
                   <td><%= jadwal[i].kursi_terisi %></td>
                   <td><%= jadwal[i].harga_perkursi %></td>
                   <td>
-                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                    <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit"
+                      data-id="<%= jadwal[i].id %>" data-tanggal="<%= jadwal[i].tanggal_berangkat %>"
+                      data-origin="<%= jadwal[i].origin %>" data-destination="<%= jadwal[i].destination %>"
+                      data-jam="<%= jadwal[i].jam_berangkat %>" data-MobilId="<%= jadwal[i].Car.jenis_mobil %>"
+                      data-jumlah="<%= jadwal[i].jumlah_kursi %>" data-kosong="<%= jadwal[i].kursi_kosong %>"
+                      data-terisi="<%= jadwal[i].kursi_terisi %>" data-harga="<%= jadwal[i].harga_perkursi %>">
                       <span class="glyphicon glyphicon-pencil"></span>
                       Edit
                     </a>
-                    <button class="btn btn-danger btn-sm" onclick="update_status(`<%= jadwal[i].id %>`)"
+                    <button class="btn btn-danger btn-sm" onclick="delete_jadwal(`<%= jadwal[i].id %>`)"
                       data-id="<%= jadwal[i].id %>">
                       <span class="glyphicon glyphicon-trash"></span>
                       Hapus
@@ -123,22 +128,33 @@
     //showing data to e edit modal 
     $('#kelas').on('click', '.edit', function () {
       const id = $(this).data('id');
-      const nama = $(this).data('nama');
-      const tingkat = $(this).data('tingkat');
-
+      const tanggal_berangkat = $(this).data('tanggal');
+      const origin = $(this).data('origin');
+      const destination = $(this).data('destination');
+      const jam_berangkat = $(this).data('jam');
+      const MobilId = $(this).data('MobilId');
+      const jumlah_kursi = $(this).data('jumlah');
+      const kursi_kosong = $(this).data('kosong');
+      const kursi_terisi = $(this).data('terisi');
+      const harga_kursi = $(this).data('harga');
 
       $('#edit-modal').modal('show');
       $('.id').val(id);
-      $('.nama').val(nama);
-      $('.tingkat').val(tingkat);
+      $('.tanggal_berangkat').val(tanggal_berangkat);
+      $('.origin').val(origin);
+      $('select').val(MobilId);
+      $('.destination').val(destination);
+      $('.jam_berangkat').val(jam_berangkat);
+      $('.jumlah_kursi').val(jumlah_kursi);
+      $('.kursi_kosong').val(kursi_kosong);
+      $('.kursi_terisi').val(kursi_terisi);
+      $('.harga_kursi').val(harga_kursi);
     });
   })
 
-  // Delete guru 
-  function delete_kelas(id) {
-    let idKelas = id;
+  function delete_jadwal(id) {
     swal({
-      title: "Yakin Ingin Menghapus Data Kelas ini?",
+      title: "Yakin Ingin Menghapus Data Jadwal ini?",
       text: "Data yang dihapus, tidak bisa kembali lagi.",
       icon: "warning",
       buttons: true,
@@ -147,11 +163,11 @@
       if (willDelete) {
         swal({
           title: "Success",
-          text: "Success Delete Data Kelas",
+          text: "Success Delete Data Jadwal",
           icon: "success",
           button: "Oke",
         }).then(suksesDelete => {
-          window.location.assign(`/admin/kelas/delete/${idKelas}`);
+          window.location.assign(`/admin/jadwal/delete/${id}`);
         });
       }
     });

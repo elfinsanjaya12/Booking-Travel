@@ -7,13 +7,15 @@ var {
   actionUpdateMobil,
   getJadwal,
   actionCreateJadwal,
+  actionUpdateJadwal,
   getCustomer,
   getPesanan,
   getPembayaran,
   getBank,
   actionCreateBank,
   actionUpdateBank,
-  actionDeleteBank
+  actionDeleteBank,
+  actionDeleteJadwal
 } = require("../controllers/AdminController");
 
 /* get all car */
@@ -24,6 +26,8 @@ router.post("/admin/mobil/update", actionUpdateMobil);
 
 router.get("/admin/jadwal", getJadwal);
 router.post("/admin/jadwal", actionCreateJadwal);
+router.get("/admin/jadwal/delete/:id", actionDeleteJadwal);
+router.post("/admin/jadwal/update", actionUpdateJadwal);
 
 router.get("/admin/customer", getCustomer);
 

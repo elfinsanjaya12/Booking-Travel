@@ -1,68 +1,78 @@
 <div class="modal fade" id="edit-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Edit data jadwal</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form" id="simpan_guru">
-            <div class="box-body">
-              <div class="form-group">
-                <label for="tgl_berangkat">Tanggal berangkat</label>
-                <input type="text" class="form-control" id="tgl_berangkat" name="tgl_berangkat" placeholder="Masukan tanggal berangkat" required>
-              </div>
-              <div class="form-group">
-                <label for="lokasi_awal">Lokasi awal</label>
-                <input type="text" class="form-control" id="lokasi_awal" name="lokasi_awal" placeholder="Masukan lokasi awal" required>
-              </div>
-              <div class="form-group">
-                <label for="tujuan">Tujuan</label>
-                <input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Masukan tujuan" required>
-              </div>
-              <div class="form-group">
-                <label for="jam_keberangkatan">Jam keberangkatan</label>
-                <input type="text" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Masukan jam keberangkatan" required>
-              </div>
-
-              <div class="form-group">
-                <label for="mobil">Mobil</label>
-                <input type="text" class="form-control" id="mobil" name="mobil" placeholder="Masukan mobil" required>
-              </div>
-
-              <div class="form-group">
-                <label for="jumlah_kursi">Jumlah kursi</label>
-                <input type="text" class="form-control" id="jumlah_kursi" name="jumlah_kursi" placeholder="Masukan jumlah kursi" required>
-              </div>
-
-              <div class="form-group">
-                <label for="kursi_kosong">Kursi kosong</label>
-                <input type="text" class="form-control" id="kursi_kosong" name="kursi_kosong" placeholder="Masukan kursi kosong" required>
-              </div>
-
-              <div class="form-group">
-                <label for="kursi_terisi">Kursi terisi</label>
-                <input type="text" class="form-control" id="kursi_terisi" name="kursi_terisi" placeholder="Masukan kursi terisi" required>
-              </div>
-
-              <div class="form-group">
-                <label for="harga_perkursi">Harga perkursi</label>
-                <input type="text" class="form-control" id="harga_perkursi" name="harga_perkursi" placeholder="Masukan harga perkursi" required>
-              </div>
-
-
-              <!-- select -->
-              
-            </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-          </form>
-        </div>
-  
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit data jadwal</h4>
       </div>
-      <!-- /.modal-content -->
+      <div class="modal-body">
+        <form role="form" action="/admin/jadwal/update" method="POST">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="tanggal_berangkat">Tanggal berangkat</label>
+              <input type="date" class="form-control tanggal_berangkat" id="tanggal_berangkat" name="tanggal_berangkat"
+                placeholder="Masukan tanggal berangkat" required>
+            </div>
+            <div class="form-group">
+              <label for="origin">Lokasi awal</label>
+              <input type="text" class="form-control origin" id="origin" name="origin" placeholder="Masukan lokasi awal"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="destination">Tujuan</label>
+              <input type="text" class="form-control destination" id="destination" name="destination"
+                placeholder="Masukan Tujuan" required>
+            </div>
+            <div class="form-group">
+              <label for="jam_berangkat">Jam keberangkatan</label>
+              <input type="text" class="form-control jam_berangkat" id="jam_berangkat" name="jam_berangkat"
+                placeholder="Masukan jam keberangkatan" required>
+            </div>
+
+            <div class="form-group">
+              <select required name="MobilId" class="form-control">
+                <option value="">--- Pilih Barang ---</option>
+                <% for(let i = 0; i < car.length; i++) { %>
+                <option value=<%= car[i].id %>><%= car[i].jenis_mobil %></option>
+                <% } %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="jumlah_kursi">Jumlah kursi</label>
+              <input type="text" class="form-control jumlah_kursi" id="jumlah_kursi" name="jumlah_kursi"
+                placeholder="Masukan jumlah kursi" required>
+            </div>
+
+            <div class="form-group">
+              <label for="kursi_kosong">Kursi kosong</label>
+              <input type="text" class="form-control kursi_kosong" id="kursi_kosong" name="kursi_kosong"
+                placeholder="Masukan kursi kosong" required>
+            </div>
+
+            <div class="form-group">
+              <label for="kursi_terisi">Kursi terisi</label>
+              <input type="text" class="form-control kursi_terisi" id="kursi_terisi" name="kursi_terisi"
+                placeholder="Masukan kursi terisi" required>
+            </div>
+
+            <div class="form-group">
+              <label for="harga_kursi">Harga perkursi</label>
+              <input type="text" class="form-control harga_kursi" id="harga_kursi" name="harga_kursi"
+                placeholder="Masukan harga perkursi" required>
+            </div>
+
+          </div>
+          <div class="box-footer">
+            <input type="text" name="id" class="id">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+
     </div>
-    <!-- /.modal-dialog -->
+    <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
+</div>

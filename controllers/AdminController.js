@@ -102,6 +102,55 @@ exports.actionCreateJadwal = async (req, res) => {
   });
 }
 
+exports.actionDeleteJadwal = async (req, res) => {
+  const { id } = req.params
+  const jadwal = await Jadwal.findOne({
+    where: {
+      id: { [Op.eq]: id }
+    }
+  })
+  jadwal.destroy();
+  res.redirect('/admin/jadwal');
+}
+
+exports.actionUpdateJadwal = (req, res) => {
+  const {
+    tanggal_berangkat,
+    origin,
+    destination,
+    jam_berangkat,
+    MobilId,
+    jumlah_kursi,
+    harga_perkursi,
+    id
+  } = req.body
+  console.log("sukses")
+  console.log(id)
+  Jadwal.findOne({
+    where: {
+      id: { [Op.eq]: id }
+    }
+  }).then((jadwal) => {
+    if (jadwal) {
+      jadwal.update({
+        tanggal_berangkat,
+        origin,
+        destination,
+        jam_berangkat,
+        MobilId,
+        jumlah_kursi,
+        harga_perkursi,
+      }).then(() => {
+        res.redirect('/admin/jadwal');
+      }).catch((err) => {
+        res.redirect('/admin/jadwal');
+      });
+    }
+  }).catch((err) => {
+    res.redirect('/admin/jadwal');
+  });
+
+}
 
 
 // disini cara ambil view yat ???
@@ -168,7 +217,7 @@ exports.actionDeleteBank = async (req, res) => {
 
 exports.actionUpdateBank = async (req, res) => {
   const { no_rekening, nama_bank, nama_pemilik, id } = req.body
-  console.log(id)
+
   try {
     const update_bank = await Bank.findOne({ where: { id: { [Op.eq]: id } } })
     console.log(update_bank)
