@@ -185,7 +185,13 @@ exports.getPembayaran = async (req, res) => {
   Pembayaran.findAll({
     include: [
       { model: Bank },
-      { model: Pesanan }
+      {
+        model: Pesanan,
+        include: [
+          { model: Customer },
+          { model: Jadwal },
+        ]
+      }
     ]
   }).then((pembayaran) => {
     console.log(pembayaran)

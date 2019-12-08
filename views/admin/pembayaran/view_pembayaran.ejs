@@ -1,4 +1,3 @@
-
 <%- include ../../partials/admin_layout/header.ejs %>
 <%- include ../../partials/admin_layout/sidebar.ejs %>
 <!-- Content Wrapper. Contains page content -->
@@ -31,12 +30,19 @@
                   <th>Lokasi awal</th>
                   <th>Lokasi tujuan</th>
                   <th>Total bayar</th>
-                  <th>Bukti pembayaran</th>
-                  <th>Status (sudah  bayar/belum bayar)</th>
-                  <th>Aksi</th>
+
                 </tr>
               </thead>
               <tbody>
+                <% for (let i = 0; i < pembayaran.length; i++ ) { %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= pembayaran[i].Pesanan.Customer.nama %></td>
+                  <td><%= pembayaran[i].Pesanan.Jadwal.origin %></td>
+                  <td><%= pembayaran[i].Pesanan.Jadwal.destination %></td>
+                  <td><%= pembayaran[i].Pesanan.total_bayar %></td>
+                </tr>
+                <% } %>
 
               </tbody>
             </table>
