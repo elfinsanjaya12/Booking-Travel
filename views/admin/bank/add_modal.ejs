@@ -7,20 +7,23 @@
         <h4 class="modal-title">Tambah data bank</h4>
       </div>
       <div class="modal-body">
-        <form role="form" id="simpan_guru">
+        <form role="form" action="/admin/bank" method="POST">
           <div class="box-body">
             <div class="form-group">
-              <label for="no_rek">No Rekening</label>
-              <input type="text" class="form-control" id="no_rek" name="no_rek" placeholder="Masukan No rekening" required>
+              <label for="no_rekening">No Rekening</label>
+              <input type="text" class="form-control" id="no_rekening" name="no_rekening"
+                placeholder="Masukan No rekening" required>
             </div>
             <div class="form-group">
-              <label for="nama">Nama Bank</label>
-              <input type="text" class="form-control" id="nama" name="nama_bank" placeholder="Masukan nama bank" required>
+              <label for="nama_bank">Nama Bank</label>
+              <input type="text" class="form-control" id="nama" name="nama_bank" placeholder="Masukan nama bank"
+                required>
             </div>
             <!-- select -->
             <div class="form-group">
               <label fro="nama_pemilik">Nama Pemilik</label>
-              <input type="text" class="form-control" id="nama_pemilik" name="nama_pemilik" placeholder="Masukan nama pemilik" required>
+              <input type="text" class="form-control" id="nama_pemilik" name="nama_pemilik"
+                placeholder="Masukan nama pemilik" required>
               <!-- <select required name="jk" class="form-control">
                 <option value="">--- Pilih Jenis Kelamin ---</option>
                 <option value="pria">Pria</option>

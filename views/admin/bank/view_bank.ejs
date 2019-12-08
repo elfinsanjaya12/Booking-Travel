@@ -42,18 +42,15 @@
                                     <td><%= bank[i].nama_bank %></td>
                                     <td><%= bank[i].nama_pemilik %></td>
                                     <td>
-                                        <!-- <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit">
+                                        <a href="javascript:void(0);" type="button" class="btn btn-success btn-sm edit"
+                                            data-id="<%= bank[i].id %>" data-no="<%= bank[i].no_rekening %>"
+                                            data-bank="<%= bank[i].nama_bank %>"
+                                            data-pemilik="<%= bank[i].nama_pemilik %>">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                             Edit
-                                        </a> -->
-
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                            Edit
-                                        </button>
-
-                                        <button class="btn btn-danger btn-sm"
-                                            onclick="update_status(`<%= bank[i].id %>`)" data-id="<%= bank[i].id %>">
+                                        </a>
+                                        <button class="btn btn-danger btn-sm" onclick="delete_bank(`<%= bank[i].id %>`)"
+                                            data-id="<%= bank[i].id %>">
                                             <span class="glyphicon glyphicon-trash"></span>
                                             Hapus
                                         </button>
@@ -118,22 +115,23 @@
         //showing data to e edit modal 
         $('#kelas').on('click', '.edit', function () {
             const id = $(this).data('id');
-            const nama = $(this).data('nama');
-            const tingkat = $(this).data('tingkat');
+            const nama_pemilik = $(this).data('pemilik');
+            const nama_bank = $(this).data('bank');
+            const no_rekening = $(this).data('no');
 
 
             $('#edit-modal').modal('show');
             $('.id').val(id);
-            $('.nama').val(nama);
-            $('.tingkat').val(tingkat);
+            $('.nama_pemilik').val(nama_pemilik);
+            $('.nama_bank').val(nama_bank);
+            $('.no_rekening').val(no_rekening);
         });
     })
 
     // Delete guru 
-    function delete_kelas(id) {
-        let idKelas = id;
+    function delete_bank(id) {
         swal({
-            title: "Yakin Ingin Menghapus Data Kelas ini?",
+            title: "Yakin Ingin Menghapus Data Bank ini?",
             text: "Data yang dihapus, tidak bisa kembali lagi.",
             icon: "warning",
             buttons: true,
@@ -142,11 +140,11 @@
             if (willDelete) {
                 swal({
                     title: "Success",
-                    text: "Success Delete Data Kelas",
+                    text: "Success Delete Data Bank",
                     icon: "success",
                     button: "Oke",
                 }).then(suksesDelete => {
-                    window.location.assign(`/admin/kelas/delete/${idKelas}`);
+                    window.location.assign(`/admin/bank/delete/${id}`);
                 });
             }
         });

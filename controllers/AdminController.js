@@ -146,6 +146,43 @@ exports.getBank = async (req, res) => {
   })
 };
 
+exports.actionCreateBank = (req, res) => {
+  const { no_rekening, nama_bank, nama_pemilik } = req.body
+  Bank.create({
+    no_rekening, nama_bank, nama_pemilik
+  }).then(() => {
+    res.redirect("/admin/bank")
+  })
+}
+
+exports.actionDeleteBank = async (req, res) => {
+  const { id } = req.params
+  try {
+    const bank = await Bank.findOne({ where: { id: { [Op.eq]: id } } })
+    bank.destroy();
+    res.redirect("/admin/bank")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.actionUpdateBank = async (req, res) => {
+  const { no_rekening, nama_bank, nama_pemilik, id } = req.body
+  console.log(id)
+  try {
+    const update_bank = await Bank.findOne({ where: { id: { [Op.eq]: id } } })
+    console.log(update_bank)
+    if (update_bank) {
+      update_bank.no_rekening = no_rekening;
+      update_bank.nama_bank = nama_bank;
+      update_bank.nama_pemilik = nama_pemilik;
+      await update_bank.save();
+    }
+    res.redirect("/admin/bank")
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 exports.actionCreate = (req, res) => {

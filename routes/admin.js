@@ -10,7 +10,10 @@ var {
   getCustomer,
   getPesanan,
   getPembayaran,
-  getBank
+  getBank,
+  actionCreateBank,
+  actionUpdateBank,
+  actionDeleteBank
 } = require("../controllers/AdminController");
 
 /* get all car */
@@ -29,6 +32,9 @@ router.get("/admin/pesanan", getPesanan);
 router.get("/admin/pembayaran", getPembayaran);
 
 router.get("/admin/bank", getBank);
+router.post("/admin/bank", actionCreateBank);
+router.get("/admin/bank/delete/:id", actionDeleteBank);
+router.post("/admin/bank/update", actionUpdateBank);
 
 
 module.exports = router;
