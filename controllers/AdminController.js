@@ -3,7 +3,8 @@ const {
   Bank,
   Jadwal,
   Customer,
-  Pesanan
+  Pesanan,
+  Pembayaran
 } = require("../models")
 const Op = require("sequelize").Op
 
@@ -181,9 +182,20 @@ exports.getPesanan = async (req, res) => {
 
 // disini cara ambil view yat ???
 exports.getPembayaran = async (req, res) => {
-  res.render('admin/pembayaran/view_pembayaran', {
-    title: "Pembayaran",
-  })
+  Pembayaran.findAll({
+    include: [
+      { model: Bank },
+      { model: Pesanan }
+    ]
+  }).then((pembayaran) => {
+    console.log(pembayaran)
+    res.render('admin/pembayaran/view_pembayaran', {
+      title: "Pembayaran",
+      pembayaran
+    })
+  }).catch((err) => {
+
+  });
 };
 
 // disini cara ambil view yat ???

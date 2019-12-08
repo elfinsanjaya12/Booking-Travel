@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     Pembayaran.belongsTo(sequelize.models.Pesanan, {
       foreignKey: "PesananId"
     });
+
+    Pembayaran.belongsTo(sequelize.models.Bank, {
+      foreignKey: "BankId"
+    });
   };
   return Pembayaran;
 };
